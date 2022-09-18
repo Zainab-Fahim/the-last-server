@@ -1,0 +1,123 @@
+{
+  "description": "Appointment Reminder",
+  "states": [
+    {
+      "name": "Trigger",
+      "type": "trigger",
+      "transitions": [
+        {
+          "next": "get_input",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "incomingCall"
+        },
+        {
+          "event": "incomingConversationMessage"
+        },
+        {
+          "event": "incomingRequest"
+        },
+        {
+          "event": "incomingParent"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": 40,
+          "y": -180
+        }
+      }
+    },
+    {
+      "name": "get_input",
+      "type": "split-based-on",
+      "transitions": [
+        {
+          "next": "fallback_triggermessage",
+          "event": "noMatch"
+        },
+        {
+          "next": "set_task_complete",
+          "event": "match",
+          "conditions": [
+            {
+              "friendly_name": "If value equal_to done",
+              "arguments": [
+                "{{trigger.message.Body}}"
+              ],
+              "type": "equal_to",
+              "value": "done"
+            }
+          ]
+        }
+      ],
+      "properties": {
+        "input": "{{trigger.message.Body}}",
+        "offset": {
+          "x": 100,
+          "y": 40
+        }
+      }
+    },
+    {
+      "name": "set_task_complete",
+      "type": "run-function",
+      "transitions": [
+        {
+          "event": "success"
+        },
+        {
+          "event": "fail"
+        }
+      ],
+      "properties": {
+        "service_sid": "ZSf7d387b998d01da016be89b417526147",
+        "environment_sid": "ZE3001ea4f571642409895202eb92babc7",
+        "offset": {
+          "x": 400,
+          "y": 310
+        },
+        "function_sid": "ZHc91b349b5e6f736d385f61ab5cb8d5a8",
+        "parameters": [
+          {
+            "value": "{{trigger.message.From}}",
+            "key": "receipent_contact"
+          }
+        ],
+        "url": "https://the-last-server-1861.twil.io/set_task_complete"
+      }
+    },
+    {
+      "name": "fallback_triggermessage",
+      "type": "send-and-wait-for-reply",
+      "transitions": [
+        {
+          "next": "get_input",
+          "event": "incomingMessage"
+        },
+        {
+          "event": "timeout"
+        },
+        {
+          "event": "deliveryFailure"
+        }
+      ],
+      "properties": {
+        "offset": {
+          "x": -20,
+          "y": 310
+        },
+        "service": "{{trigger.message.InstanceSid}}",
+        "channel": "{{trigger.message.ChannelSid}}",
+        "from": "{{flow.channel.address}}",
+        "body": "To confirm your task completion, please enter the word \"done\"",
+        "timeout": "3600"
+      }
+    }
+  ],
+  "initial_state": "Trigger",
+  "flags": {
+    "allow_concurrent_calls": true
+  }
+}
