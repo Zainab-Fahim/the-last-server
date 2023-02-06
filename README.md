@@ -27,6 +27,5 @@ Twilio - Wix Integration
 ## What's next for the-last-server
 For now the-last-server only supports a single functionality at a time. Perhaps with time, I plan the-last-server to act as a reference point for many tasks at a time.
 
-# the-last-server
-(Webhook URL)[https://webhooks.twilio.com/v1/Accounts/ACeb848ce8368e906c1052a89f99047241/Flows/FW17ceddf3463be53fae75538bd3d3d089]
-`set-task-complete` [function URL](https://the-last-server-1861.twil.io/set_task_complete)
+- [Webhook URL](https://webhooks.twilio.com/v1/Accounts/ACeb848ce8368e906c1052a89f99047241/Flows/FW17ceddf3463be53fae75538bd3d3d089)
+- `set-task-complete` [function URL](https://the-last-server-1861.twil.io/set_task_complete)
