@@ -1,3 +1,5 @@
+> Know for certain 💯 if you are the last to serve dinner  🍽️No more unrefrigerated 😩 overnight dinner remains🤞 
+
 ## Inspiration
 Just a few days back I was woken up by my angry father, which rightfully had to be directed to my brother because he was the culprit. He was the one to last serve dinner, and by the unsaid law, was the one responsible to keep the remaining in the refrigerator. Turns out he thought that I hadn't served dinner yet, and assumed I was the last one.  
 
